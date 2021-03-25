@@ -1,0 +1,1 @@
+This are my SQL exercises on the "LIMIT" clause

@@ -31,11 +31,11 @@ SELECT *
 FROM employees
 WHERE last_name LIKE "e%";
 
-# Find all current or previous employees whose last name starts or ends with 'E'. Enter a comment with the number of employees whose last name starts or ends with E. How many employees have a last name that ends with E, but does not start with E?R.- there are 7,330 employees whose last names start or end with the letter "E"; however, the results indicate that there are 23, 393 employees whose name ends with the letter "E", but does not start with the letter "E".
+# Find all current or previous employees whose last name starts or ends with 'E'. Enter a comment with the number of employees whose last name starts or ends with E. How many employees have a last name that ends with E, but does not start with E?R.- there are 30,723 employees whose last names start or end with the letter "E"; however, the results indicate that there are 23, 393 employees whose name ends with the letter "E", but does not start with the letter "E".
 SELECT *
 FROM employees
 WHERE last_name LIKE "e%"
-    OR last_name = "%e";
+    OR last_name LIKE "%e";
     
 SELECT *
 FROM employees
@@ -78,3 +78,45 @@ SELECT *
 FROM employees
 WHERE last_name LIKE "%q%"
     AND last_name NOT LIKE "%qu%";
+    
+##### Lesson on the ORDER BY clause = 25 March 2021
+
+USE chipotle;
+
+#
+SELECT item_name
+FROM orders
+ORDER BY item_name;
+
+#
+SELECT item_name
+FROM orders
+ORDER BY item_name DESC;
+
+#
+SELECT
+    item_name AS item,
+    quantity AS number
+    FROM orders
+ORDER BY item DESC;
+
+#
+SELECT
+    item_name AS item,
+    quantity AS number
+FROM orders
+ORDER BY number, item;
+
+#
+SELECT
+    item_name AS item,
+    quantity AS number
+FROM orders
+ORDER BY number DESC, item;
+
+#
+SELECT
+    item_name AS item,
+    quantity AS number
+FROM orders
+ORDER BY number DESC, item ASC;

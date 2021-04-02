@@ -135,6 +135,37 @@ WHERE salaries.to_date LIKE "99%"
 GROUP BY dept_name
 ORDER BY (AVG(salaries.salary)) DESC LIMIT 1;
     
-    
-    
-    
+# 8.- Who is the highest paid employee in the Marketing Department
+# Step 1.- List all useful tables: salaries, employees, dept_employees
+# Step 2.- identify all coecting variables and layout strategy: open with the employees table and leverage the "emp_no" variable to connect with the salaries table; then, leverage the "dept_emp" table to determine employee currency and crossreference with dept number "d001"
+USE employees;
+
+SELECT last_name, first_name, salary
+FROM employees
+JOIN salaries ON salaries.emp_no = employees.emp_no
+JOIN dept_emp ON dept_emp.emp_no = employees.emp_no
+	WHERE dept_emp.dept_no LIKE "d001"
+	AND dept_emp.to_date LIKE "99%"
+ORDER BY salaries.salary DESC
+LIMIT 1;
+
+# 9.- Which current department manager has the highest salary?
+# Step 1.- List all useful tables: dept_manager, salaries, employees, departments
+# Step 2.- Identify all useful variables and lay out strategy: leverage "emp_no" to link the dept_manager and the salaries tables; then, link the emloyees table with boht through same variable. Finally, use the "dept_no" variable to identify the actual department name through the "departments" table
+
+SELECT
+	last_name,
+	first_name,
+	dept_name AS "Department",
+	salary
+FROM dept_manager
+JOIN salaries ON salaries.emp_no = dept_manager.emp_no
+JOIN employees ON employees.emp_no = dept_manager.emp_no
+JOIN departments ON departments.dept_no = dept_manager.dept_no
+WHERE dept_manager.to_date LIKE "99%"
+ORDER BY salary DESC
+LIMIT 1;
+
+# 10.- Bonus Find the names of all current employees, their department name, and their current manager's name
+# Step 1.- List all useful tables: employees, dept_name, dept_manager
+# Step 2.- Identify all linking variables and lay out strategy: seek for "DISTINCT" employees' "last_name", "first_name", who are currently employed, their current department name and the current deptartment manager. Leverage the "emp_no" variable to linking

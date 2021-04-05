@@ -9,7 +9,7 @@
 
 USE employees;
 SELECT
-	employees.emp_no,
+	dept_emp.emp_no,
 	dept_no,
 	hire_date AS "Start Date",
 	dept_emp.from_date AS "Started at Latest Position",
@@ -20,7 +20,7 @@ SELECT
 		END AS is_current_employee
 FROM employees
 JOIN dept_emp ON dept_emp.emp_no = employees.emp_no
-ORDER BY emp_no;
+ORDER BY dept_emp.emp_no;
 
 # 2.- Write a query that returns all employee names (previous and current), and a new column 'alpha_group' that returns 'A-H', 'I-Q', or 'R-Z' depending on the first letter of their last name
 
@@ -52,7 +52,11 @@ SELECT
 		END AS Decade_of_Birth
 FROM employees
 GROUP BY Decade_of_Birth
-ORDER BY Decade_of_Birth;		
+ORDER BY Decade_of_Birth;
+
+# BONUS: What is the current average salary for each of the following department groups: R&D, Sales & Marketing, Prod & QM, Finance & HR, Customer Service?
+
+		
 
 USE employees;
 
